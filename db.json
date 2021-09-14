@@ -1,0 +1,24 @@
+{
+  "contacts": [
+    {
+      "name": "Petro",
+      "number": "09876543",
+      "id": 2
+    },
+    {
+      "name": "Rosie Simpson",
+      "number": "01928384",
+      "id": 3
+    },
+    {
+      "name": "Oleg",
+      "number": "05918374",
+      "id": 4
+    },
+    {
+      "name": "Андрей",
+      "number": "12345678",
+      "id": 5
+    }
+  ]
+}
