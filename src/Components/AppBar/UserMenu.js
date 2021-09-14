@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getUserName } from "../../Redux/Auth/auth-selectors";
-import authOperations from "../../Redux/Auth/auth-operations";
+import { authOperations, authSelectors } from "../../Redux/Auth";
 import { Container, Span } from "./AppBar.styles";
 
 const UserMenu = () => {
-  const name = useSelector(getUserName);
+  const name = useSelector(authSelectors.getUserName);
   const dispatch = useDispatch();
 
   return (
@@ -16,3 +15,5 @@ const UserMenu = () => {
     </Container>
   );
 };
+
+export default UserMenu;
