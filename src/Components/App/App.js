@@ -1,20 +1,42 @@
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Switch, Route } from "react-router-dom";
+import { authOperations } from "../../Redux/Auth/auth-operations";
 
-import ContactForm from "../ContactForm";
-import ContactList from "../ContactList";
-import Filter from "../Filter";
-import { Container } from "./App.styles";
+import AppBar from "../AppBar";
+import HomeView from "../HomeView";
+import RegisterView from "../RegisterView";
+import LoginView from "../LoginView";
+import PhonebookView from "../PhonebookView";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
-    <Container>
-      <h1>Phonebook</h1>
-      <ContactForm      />
-      <h2>Contacts</h2>
-      <Filter/>
-      <ContactList/>
-    </Container>
+    <>
+      <AppBar />
+
+      <Switch>
+        <Route path="/" exact>
+          <HomeView />
+        </Route>
+        <Route path="/register">
+          <RegisterView />
+        </Route>
+        <Route path="/login">
+          <LoginView />
+        </Route>
+        <Route path="/phonebook">
+          <PhonebookView />
+        </Route>
+      </Switch>
+    </>
   );
-}
+};
 
 export default App;
