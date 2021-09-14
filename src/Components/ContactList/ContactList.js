@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import * as contactsOperations from '../../Redux/Contacts/contacts-operations';
-import { getAllContacts, getFilteredContacts } from '../../Redux/Contacts/contacts-selectors'
+import * as contactsOperations from "../../Redux/Contacts/contacts-operations";
+import {
+  getAllContacts,
+  getFilteredContacts,
+} from "../../Redux/Contacts/contacts-selectors";
 import { Btn, ItemText, Item } from "./ContactListStyles";
 
 const ContactList = () => {
   const contacts = useSelector(getAllContacts);
-  const visibleContacts = useSelector(getFilteredContacts)
+  const visibleContacts = useSelector(getFilteredContacts);
 
   const dispatch = useDispatch();
 
-    useEffect(() => {
+  useEffect(() => {
     dispatch(contactsOperations.fetchGetContacts());
-    }, [dispatch]);
-  
+  }, [dispatch]);
 
   return (
     contacts.length > 0 && (
@@ -24,7 +26,12 @@ const ContactList = () => {
               {`${i + 1})    `}
               {name}: {number}
             </ItemText>
-            <Btn type="button" onClick={() => dispatch(contactsOperations.fetchDeleteContacts(id))}>
+            <Btn
+              type="button"
+              onClick={() =>
+                dispatch(contactsOperations.fetchDeleteContacts(id))
+              }
+            >
               Delete
             </Btn>
           </Item>

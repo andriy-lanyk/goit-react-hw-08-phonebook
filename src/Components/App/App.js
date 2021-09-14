@@ -9,6 +9,7 @@ import HomeView from "../HomeView";
 import RegisterView from "../RegisterView";
 import LoginView from "../LoginView";
 import PhonebookView from "../PhonebookView";
+import { Container } from "./App.styles";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Container>
       <AppBar />
 
       <Switch>
@@ -35,7 +36,7 @@ const App = () => {
           <PhonebookView />
         </Route>
       </Switch>
-    </>
+    </Container>
   );
 };
 
