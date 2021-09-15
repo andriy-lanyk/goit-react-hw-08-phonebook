@@ -5,7 +5,7 @@ const HomeView = () => {
     <div>
       <h1>Welcome to your Phonebook application!</h1>
       <p>
-        You need to <Link to="/register">register</Link> or
+        You need to <Link to="/register">register</Link> or{" "}
         <Link to="/login">login</Link> to go to contact information.
       </p>
     </div>

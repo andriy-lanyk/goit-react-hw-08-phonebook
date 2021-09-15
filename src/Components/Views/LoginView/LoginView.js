@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../../../Redux/Auth";
 
-import { Form, Label } from "./LoginView.styles";
+import { Form, Label, Btn } from "./LoginView.styles";
 
 const LoginView = () => {
   const [email, setEmail] = useState("");
@@ -56,7 +56,7 @@ const LoginView = () => {
           />
         </Label>
 
-        <button type="submit">Login</button>
+        <Btn type="submit">Login</Btn>
       </Form>
     </div>
   );

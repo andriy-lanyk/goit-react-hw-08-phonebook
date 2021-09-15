@@ -40,7 +40,7 @@ const ContactForm = () => {
       return;
     }
 
-    dispatch(contactsOperations.fetchAddContacts({ name, number }));
+    dispatch(contactsOperations.fetchAddContacts(name, number));
     reset();
   };
 

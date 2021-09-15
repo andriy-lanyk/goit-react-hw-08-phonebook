@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../../../Redux/Auth";
 
-import { Form, Label } from "./RegisterView.styles";
+import { Form, Label, Btn } from "./RegisterView.styles";
 
 const RegisterView = () => {
   const [name, setName] = useState("");
@@ -65,7 +65,7 @@ const RegisterView = () => {
           />
         </Label>
 
-        <button type="submit">Register</button>
+        <Btn type="submit">Sign up</Btn>
       </Form>
     </div>
   );

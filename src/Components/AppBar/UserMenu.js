@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { authOperations, authSelectors } from "../../Redux/Auth";
-import { Container, Span } from "./AppBar.styles";
+import { Container, Span, Btn } from "./AppBar.styles";
 
 const UserMenu = () => {
   const name = useSelector(authSelectors.getUserName);
@@ -9,9 +9,9 @@ const UserMenu = () => {
   return (
     <Container>
       <Span>Hello, {name}</Span>
-      <button type="button" onClick={dispatch(authOperations.logOut())}>
+      <Btn type="button" onClick={() => dispatch(authOperations.logOut())}>
         LogOut
-      </button>
+      </Btn>
     </Container>
   );
 };

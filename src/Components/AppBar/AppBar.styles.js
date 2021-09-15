@@ -17,4 +17,12 @@ const Span = styled.span`
   margin-right: 12px;
 `;
 
-export { Header, Container, Span };
+const Btn = styled.button`
+  width: 100px;
+  padding: 5px;
+  font-weight: 600;
+  background-color: #5d5dff;
+  border-radius: 5px;
+`;
+
+export { Header, Container, Span, Btn };
