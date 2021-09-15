@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { authOperations } from "../../../Redux/Auth/auth-operations";
+import { authOperations } from "../../../Redux/Auth";
 
 import { Form, Label } from "./LoginView.styles";
 

@@ -4,14 +4,19 @@ import styles from "./Navigation.module.css";
 const Navigation = () => {
   return (
     <nav>
-      <NavLink to="/" exact style={styles.link} activeStyle={styles.activeLink}>
+      <NavLink
+        to="/"
+        exact
+        className={styles.link}
+        activeClassName={styles.activeLink}
+      >
         Home
       </NavLink>
 
       <NavLink
         to="/phonebook"
-        style={styles.link}
-        activeStyle={styles.activeLink}
+        className={styles.link}
+        activeClassName={styles.activeLink}
       >
         Phonebook
       </NavLink>

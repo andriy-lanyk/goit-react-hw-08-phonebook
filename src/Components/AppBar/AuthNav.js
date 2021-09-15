@@ -6,13 +6,17 @@ const AuthNav = () => {
     <div>
       <NavLink
         to="/register"
-        style={styles.link}
-        activeStyle={styles.activeLink}
+        className={styles.link}
+        activeClassName={styles.activeLink}
       >
         Registration
       </NavLink>
 
-      <NavLink to="/login" style={styles.link} activeStyle={styles.activeLink}>
+      <NavLink
+        to="/login"
+        className={styles.link}
+        activeClassName={styles.activeLink}
+      >
         LogIn
       </NavLink>
     </div>
