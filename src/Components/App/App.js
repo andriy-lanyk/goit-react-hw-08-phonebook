@@ -29,7 +29,7 @@ const loader = (
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(authSelectors.getIsLoggedIn);
+  const isLoading = useSelector(authSelectors.getLoading);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
