@@ -5,7 +5,8 @@ import {
   getFilter,
 } from "../../Redux/Contacts/contacts-selectors";
 
-import { Label, Message } from "./Filter.styles";
+import TextField from "@material-ui/core/TextField";
+import { Message } from "./Filter.styles";
 
 const Filter = () => {
   const filter = useSelector(getFilter);
@@ -17,15 +18,15 @@ const Filter = () => {
   };
 
   return contacts.length !== 0 ? (
-    <Label>
-      Find contacts by Name
-      <input
-        type="text"
-        name="Find contact"
-        value={filter}
-        onChange={handleChange}
-      />
-    </Label>
+    <TextField
+      margin="normal"
+      size="small"
+      label="Find contacts by Name"
+      type="text"
+      name="Find contact"
+      value={filter}
+      onChange={handleChange}
+    />
   ) : (
     <Message>Your Phonebook don`t have contacts</Message>
   );

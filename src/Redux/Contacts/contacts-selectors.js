@@ -2,6 +2,7 @@ import { createSelector } from "reselect";
 
 const getAllContacts = (state) => state.contacts.items;
 const getFilter = (state) => state.contacts.filter;
+const getIsLoadingContacts = (state) => state.contacts.isLoading;
 
 const getFilteredContacts = createSelector(
   [getAllContacts, getFilter],
@@ -13,4 +14,4 @@ const getFilteredContacts = createSelector(
   }
 );
 
-export { getAllContacts, getFilter, getFilteredContacts };
+export { getAllContacts, getFilter, getIsLoadingContacts, getFilteredContacts };

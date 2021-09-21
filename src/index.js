@@ -5,6 +5,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
 import { store, persistor } from "./Redux/store";
 import App from "./Components/App";
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>

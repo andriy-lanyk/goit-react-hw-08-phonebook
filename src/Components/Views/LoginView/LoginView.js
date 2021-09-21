@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authOperations, authSelectors } from "../../../Redux/Auth";
 import { toast } from "react-toastify";
+
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styles from "./LoginView.module.css";
@@ -11,7 +12,7 @@ const LoginView = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const error = useSelector(authSelectors.getError);
+  const error = useSelector(authSelectors.getLoginError);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {

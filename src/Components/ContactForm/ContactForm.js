@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllContacts } from "../../Redux/Contacts/contacts-selectors";
 import * as contactsOperations from "../../Redux/Contacts/contacts-operations";
 
-import { Form, Label, Btn } from "./ContactForm.styles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import AddIcCallIcon from "@material-ui/icons/AddIcCall";
+
+import { Form } from "./ContactForm.styles";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
@@ -51,31 +55,41 @@ const ContactForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Label>
-        Name
-        <input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-          required
-          onChange={handleChange}
-          value={name}
-        />
-      </Label>
-      <Label>
-        Number
-        <input
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-          required
-          value={number}
-          onChange={handleChange}
-        />
-      </Label>
-      <Btn type="submit">Add contact</Btn>
+      <TextField
+        fullWidth
+        margin="normal"
+        label="Name"
+        type="text"
+        name="name"
+        value={name}
+        required
+        // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+        onChange={handleChange}
+        size="small"
+      />
+
+      <TextField
+        fullWidth
+        margin="normal"
+        label="Number"
+        type="tel"
+        name="number"
+        value={number}
+        required
+        // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        title="Номер телефона должен состоять из цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+        onChange={handleChange}
+        size="small"
+        inputProps={{
+          inputMode: "numeric",
+          pattern:
+            "+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}",
+        }}
+      />
+      <Button type="submit" variant="contained" endIcon={<AddIcCallIcon />}>
+        Add contact
+      </Button>
     </Form>
   );
 };

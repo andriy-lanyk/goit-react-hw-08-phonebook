@@ -4,13 +4,12 @@ import { Switch } from "react-router-dom";
 import PrivateRoute from "../Routes/PrivateRoute";
 import PublicRoute from "../Routes/PublicRoute";
 import { authOperations, authSelectors } from "../../Redux/Auth";
-import Loader from "react-loader-spinner";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
+import Loader from "../Loader";
 import AppBar from "../AppBar";
-import { Container, FallBackContainer } from "./App.styles";
+import { Container } from "./App.styles";
 
 const HomeView = lazy(() =>
   import("../Views/HomeView" /* webpackChunkName: "Home-view" */)
@@ -23,12 +22,6 @@ const LoginView = lazy(() =>
 );
 const PhonebookView = lazy(() =>
   import("../Views/PhonebookView" /* webpackChunkName: "Phonebook-view" */)
-);
-
-const loader = (
-  <FallBackContainer>
-    <Loader type="Circles" color="rgb(25, 118, 210)" height={100} width={100} />
-  </FallBackContainer>
 );
 
 const App = () => {
@@ -44,7 +37,7 @@ const App = () => {
       <Container>
         <AppBar />
 
-        <Suspense fallback={loader}>
+        <Suspense fallback={Loader}>
           <Switch>
             <PublicRoute path="/" exact>
               <HomeView />

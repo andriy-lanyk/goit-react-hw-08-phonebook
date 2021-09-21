@@ -4,13 +4,16 @@ const getUserName = (state) => state.auth.user.name;
 
 const getLoading = (state) => state.auth.isLoading;
 
-const getError = (state) => state.auth.error;
+const getLoginError = (state) => state.auth.error.login;
+
+const getRegisterError = (state) => state.auth.error.register;
 
 const authSelectors = {
   getIsLoggedIn,
   getUserName,
   getLoading,
-  getError,
+  getLoginError,
+  getRegisterError,
 };
 
 export default authSelectors;

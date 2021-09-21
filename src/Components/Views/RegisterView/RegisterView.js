@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { authOperations, authSelectors } from "../../../Redux/Auth";
 import { toast } from "react-toastify";
+
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styles from "./RegisterView.module.css";
@@ -10,7 +12,7 @@ const RegisterView = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const error = useSelector(authSelectors.getError);
+  const error = useSelector(authSelectors.getRegisterError);
 
   const dispatch = useDispatch();
 
@@ -97,7 +99,12 @@ const RegisterView = () => {
         />
 
         {error && (
-          <span className={styles.message}>Used another name or email</span>
+          <span className={styles.message}>
+            Such name or email already used. Enter new value or{" "}
+            <Link className={styles.messageLink} to="/login">
+              Log in
+            </Link>
+          </span>
         )}
 
         <Button type="submit" variant="contained" className={styles.button}>

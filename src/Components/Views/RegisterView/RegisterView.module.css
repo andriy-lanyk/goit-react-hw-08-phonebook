@@ -21,6 +21,11 @@
   margin: 0 auto;
 }
 
+.messageLink {
+  color: rgb(25, 118, 210);
+  text-decoration: none;
+}
+
 .button {
   width: 120px;
   display: block;

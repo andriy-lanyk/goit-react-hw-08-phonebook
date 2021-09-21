@@ -2,15 +2,17 @@ import ContactForm from "../../ContactForm";
 import ContactList from "../../ContactList";
 import Filter from "../../Filter";
 
+import { Container, TitleBig, TitleNormal } from "./PhonebookView.styles";
+
 const PhonebookView = () => {
   return (
-    <>
-      <h1>Phonebook</h1>
+    <Container>
+      <TitleBig>Phonebook</TitleBig>
       <ContactForm />
-      <h2>Contacts</h2>
+      <TitleNormal>Contacts</TitleNormal>
       <Filter />
       <ContactList />
-    </>
+    </Container>
   );
 };
 
