@@ -6,9 +6,11 @@ import PublicRoute from "../Routes/PublicRoute";
 import { authOperations, authSelectors } from "../../Redux/Auth";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 import AppBar from "../AppBar";
-import { Container } from "./App.styles";
+import { Container, FallBackContainer } from "./App.styles";
 
 const HomeView = lazy(() =>
   import("../Views/HomeView" /* webpackChunkName: "Home-view" */)
@@ -24,7 +26,9 @@ const PhonebookView = lazy(() =>
 );
 
 const loader = (
-  <Loader type="Circles" color="rgba(20, 20, 25, 0.7)" height={80} width={80} />
+  <FallBackContainer>
+    <Loader type="Circles" color="rgb(25, 118, 210)" height={100} width={100} />
+  </FallBackContainer>
 );
 
 const App = () => {
@@ -56,6 +60,17 @@ const App = () => {
             </PrivateRoute>
           </Switch>
         </Suspense>
+        <ToastContainer
+          position="top-right"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </Container>
     )
   );

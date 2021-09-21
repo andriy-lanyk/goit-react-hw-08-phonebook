@@ -18,32 +18,39 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isLoading = false;
+      state.error = false;
     },
     [authOperations.register.pending](state) {
       state.error = false;
       state.isLoading = true;
     },
     [authOperations.register.rejected](state) {
-      state = { ...initialState, error: true };
+      state = { ...initialState, error: true, isLoading: false };
     },
     [authOperations.login.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isLoading = false;
+      state.error = false;
     },
     [authOperations.login.pending](state) {
       state.error = false;
       state.isLoading = true;
     },
     [authOperations.login.rejected](state) {
-      state = { ...initialState, error: true };
+      state.user = { name: null, email: null };
+      state.token = null;
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      state.error = true;
     },
     [authOperations.logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
       state.isLoading = false;
+      state.error = false;
     },
     [authOperations.logOut.pending](state) {
       state.error = false;
@@ -56,13 +63,14 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isLoggedIn = true;
       state.isLoading = false;
+      state.error = false;
     },
     [authOperations.fetchCurrentUser.pending](state) {
       state.error = false;
       state.isLoading = true;
     },
     [authOperations.fetchCurrentUser.rejected](state) {
-      state.error = true;
+      state.error = false;
       state.isLoading = false;
     },
   },

@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { authOperations } from "../../../Redux/Auth";
-
-import { Form, Label, Btn } from "./LoginView.styles";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authOperations, authSelectors } from "../../../Redux/Auth";
+import { toast } from "react-toastify";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import styles from "./LoginView.module.css";
 
 const LoginView = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const error = useSelector(authSelectors.getError);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -26,38 +30,67 @@ const LoginView = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (
+      !email ||
+      e.target.email.value.trim() === "" ||
+      !password ||
+      e.target.password.value.trim() === ""
+    ) {
+      toast.warn("Enter email and password", { theme: "colored" });
+      return;
+    }
+
+    if (password.length < 8 || e.target.password.value.length < 8) {
+      toast.warn("Password should be at least 8 characters", {
+        theme: "colored",
+      });
+      return;
+    }
+
     dispatch(authOperations.login({ email, password }));
     setEmail("");
     setPassword("");
   };
 
   return (
-    <div>
-      <h1>Fill out the login form</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Fill out the login form</h1>
 
-      <Form onSubmit={handleSubmit} autoComplete="off">
-        <Label>
-          Email
-          <input
-            type="text"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </Label>
+      <form onSubmit={handleSubmit} autoComplete="off" className={styles.form}>
+        <TextField
+          fullWidth
+          margin="normal"
+          label="Email"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
 
-        <Label>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </Label>
+        <TextField
+          fullWidth
+          margin="normal"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+        />
 
-        <Btn type="submit">Login</Btn>
-      </Form>
+        {error && (
+          <span className={styles.message}>
+            Enter correct email and password or{" "}
+            <Link className={styles.messageLink} to="/register">
+              register
+            </Link>
+          </span>
+        )}
+
+        <Button type="submit" variant="contained" className={styles.button}>
+          Log in
+        </Button>
+      </form>
     </div>
   );
 };
