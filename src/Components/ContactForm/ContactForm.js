@@ -2,12 +2,30 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllContacts } from "../../Redux/Contacts/contacts-selectors";
 import * as contactsOperations from "../../Redux/Contacts/contacts-operations";
+import { toast } from "react-toastify";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import AddIcCallIcon from "@material-ui/icons/AddIcCall";
 
 import { Form } from "./ContactForm.styles";
+
+const validNamePattern =
+  /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
+const validNumberPattern =
+  // /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/;
+  /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/;
+
+function validateValue(text, pattern) {
+  switch (pattern) {
+    case validNamePattern:
+      return validNamePattern.test(text);
+    case validNumberPattern:
+      return validNumberPattern.test(text);
+    default:
+      return;
+  }
+}
 
 const ContactForm = () => {
   const [name, setName] = useState("");
@@ -39,12 +57,34 @@ const ContactForm = () => {
         (contact) => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
-      alert(`${name} is already in contacts`);
+      toast.warn(`${name} is already in contacts`, { theme: "colored" });
       reset();
       return;
     }
 
+    if (!validateValue(name, validNamePattern)) {
+      toast.warn(
+        "Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п.",
+        { theme: "colored" }
+      );
+      setName("");
+      return;
+    }
+
+    if (!validateValue(number, validNumberPattern)) {
+      toast.warn(
+        "Номер телефона должен состоять из цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +",
+        { theme: "colored" }
+      );
+      setNumber("");
+      return;
+    }
+
     dispatch(contactsOperations.fetchAddContacts(name, number));
+    toast.success(`${name} was added to phonebook`, {
+      theme: "colored",
+      autoClose: 2500,
+    });
     reset();
   };
 
@@ -63,8 +103,6 @@ const ContactForm = () => {
         name="name"
         value={name}
         required
-        // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
         onChange={handleChange}
         size="small"
       />
@@ -77,15 +115,8 @@ const ContactForm = () => {
         name="number"
         value={number}
         required
-        // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Номер телефона должен состоять из цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
         onChange={handleChange}
         size="small"
-        inputProps={{
-          inputMode: "numeric",
-          pattern:
-            "+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}",
-        }}
       />
       <Button type="submit" variant="contained" endIcon={<AddIcCallIcon />}>
         Add contact
