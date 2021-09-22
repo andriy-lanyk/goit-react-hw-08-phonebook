@@ -35,8 +35,9 @@ const App = () => {
   return (
     <Container>
       <AppBar />
-      {!isLoading && (
-        <Suspense fallback={Loader}>
+
+      <Suspense fallback={Loader}>
+        {!isLoading && (
           <Switch>
             <PublicRoute path="/" exact>
               <HomeView />
@@ -51,8 +52,9 @@ const App = () => {
               <PhonebookView />
             </PrivateRoute>
           </Switch>
-        </Suspense>
-      )}
+        )}
+      </Suspense>
+
       <ToastContainer
         position="top-right"
         autoClose={4000}
