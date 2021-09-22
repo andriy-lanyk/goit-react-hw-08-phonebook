@@ -4,6 +4,7 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   border-bottom: 1px solid #2a363b;
 `;
 
@@ -13,6 +14,8 @@ const Container = styled.div`
 `;
 
 const Span = styled.span`
+  display: flex;
+  align-items: center;
   font-weight: 700;
   margin-right: 12px;
 `;

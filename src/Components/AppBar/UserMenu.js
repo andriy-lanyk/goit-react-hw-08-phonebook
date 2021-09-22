@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { authOperations, authSelectors } from "../../Redux/Auth";
-import { Container, Span, Btn } from "./AppBar.styles";
+
+import Button from "@material-ui/core/Button";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import { Container, Span } from "./AppBar.styles";
 
 const UserMenu = () => {
   const name = useSelector(authSelectors.getUserName);
@@ -8,10 +12,19 @@ const UserMenu = () => {
 
   return (
     <Container>
-      <Span>Hello, {name}</Span>
-      <Btn type="button" onClick={() => dispatch(authOperations.logOut())}>
+      <Span>
+        Hello, <AccountBoxIcon color="primary" fontSize="large" />
+        {name}
+      </Span>
+      <Button
+        type="button"
+        onClick={() => dispatch(authOperations.logOut())}
+        variant="contained"
+        size="small"
+        endIcon={<ExitToAppIcon />}
+      >
         LogOut
-      </Btn>
+      </Button>
     </Container>
   );
 };

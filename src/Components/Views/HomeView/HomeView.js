@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
+import styles from "./HomeView.module.css";
 
 const HomeView = () => {
   return (
-    <div>
-      <h1>Welcome to your Phonebook application!</h1>
-      <p>
-        You need to <Link to="/register">register</Link> or{" "}
-        <Link to="/login">login</Link> to go to contact information.
+    <div className={styles.container}>
+      <h1 className={styles.title}>Welcome to your Phonebook application!</h1>
+      <p className={styles.text}>
+        You need to{" "}
+        <Link to="/register" className={styles.textLink}>
+          register
+        </Link>{" "}
+        or{" "}
+        <Link to="/login" className={styles.textLink}>
+          login
+        </Link>{" "}
+        to go to contact information.
       </p>
     </div>
   );
