@@ -33,10 +33,9 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    !isLoading && (
-      <Container>
-        <AppBar />
-
+    <Container>
+      <AppBar />
+      {!isLoading && (
         <Suspense fallback={Loader}>
           <Switch>
             <PublicRoute path="/" exact>
@@ -53,19 +52,19 @@ const App = () => {
             </PrivateRoute>
           </Switch>
         </Suspense>
-        <ToastContainer
-          position="top-right"
-          autoClose={4000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </Container>
-    )
+      )}
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </Container>
   );
 };
 
